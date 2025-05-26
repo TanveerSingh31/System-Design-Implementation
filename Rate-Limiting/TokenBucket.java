@@ -39,8 +39,9 @@ public class TokenBucket {
         Instant now = Instant.now();
 
         long tokenToAdd = (now.toEpochMilli() - lastRefillTime.toEpochMilli()) * fillRate / 60 * 1000; // tokens to be added in bucket, based on time elapsed, since last time token added
+
         this.tokenCount = Math.min( bucketCapacity, tokenToAdd); // we can at max add tokens equal to capacity of bucket
-        this.lastRefillTime = now;
+        if(tokenToAdd > 0) this.lastRefillTime = now; // since when we add token in the bucket, only then update the lastRefillTime
     }
 
 
