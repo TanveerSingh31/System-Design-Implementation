@@ -31,7 +31,7 @@ public class FixedWindowCounter {
             return true;
         }
         else{
-            return false;
+            return false; // Max request count reached in curr. window, deny request
         }
 
 
